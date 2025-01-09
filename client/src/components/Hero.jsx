@@ -23,8 +23,20 @@ const Hero = () => {
                 <button className='bg-blue-600 px-6 py-2 rounded text-white m-1'>Search</button>
             </div>
         </div>
+        <div className='border border-gray-600 shadow-md  mx-2 mt-5 p-6 flex rounded-md'>
+            <div className='flex justify-center gap-10 lg:gap-16 flex-wrap'>
+                <p className='font-medium'>Trusted by</p>
+                <img className= "h-6" src={assets.walmart_logo}/>
+                <img className= "h-6" src={assets.amazon_logo}/>
+                <img className= "h-6" src={assets.microsoft_logo}/>
+                <img className= "h-6" src={assets.adobe_logo}/>
+                <img className= "h-6" src={assets.accenture_logo}/>
+                <img className= "h-6" src={assets.samsung_logo} />
+            </div>
+        </div>
     </div>
   )
+
 }
 
 export default Hero

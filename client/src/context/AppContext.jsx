@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
   const value = {};  // You can put context values here
