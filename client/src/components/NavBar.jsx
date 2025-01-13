@@ -17,7 +17,7 @@ const NavBar = () => {
             ?<div className='flex items-center gap-3'>
                 <Link to = '/appications'>Applied jobs</Link>
                 <p>|</p>
-                <p>Hi, {user.firstName + " "+user.lastName}</p>
+                <p max-sm:hidden>Hi, {user.firstName + " "+user.lastName}</p>
             </div>
             :<div className='flex gap-4 max-sm:text-small'>
             <button className='text-gray-600'>Recruiter Login</button>
