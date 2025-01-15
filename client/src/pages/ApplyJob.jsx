@@ -7,6 +7,7 @@ import { assets } from '../assets/assets'
 import kconvert from 'k-convert'
 import moment from 'moment'
 import JobCard from '../components/JobCard'
+import Footer from '../components/Footer'
 
 const ApplyJob = () => {
   const {id} = useParams()
@@ -67,13 +68,23 @@ const ApplyJob = () => {
           <div className='rich-text' dangerouslySetInnerHTML={{__html: jobData.description}}></div>
           <button className='bg-blue-600 p-2.5 px-10 text-white rounded mt-10'>Apply Now</button>
         </div>
-        {/* Right Section More Jobs
-        <h2>More jobs from {jobData.companyId.name}</h2>
+        {/* Right Section More Jobs */}
+        {/* <h2>More jobs from {jobData.companyId.name}</h2>
           {jobs.filter(job => job._id !== jobData._id && jobs.companyId._id === jobData.companyId._id)
           .filter(job => true).slice(0,4).map(job,index => <JobCard key={index} job={job}/>)} */}
+          <div className='w-full lg:w-1/3 mt-8 ;g:mt-0 lg:ml-8 space-y-5'>
+          <h2 className="font-bold text-xl mt-10 mb-4">More jobs from {jobData.companyId.name}</h2>
+          {jobs
+            .filter(job => job._id !== jobData._id && job.companyId._id === jobData.companyId._id)
+            .slice(0, 4)
+            .map((job, index) => (
+              <JobCard key={index} job={job} />
+              ))}
+          </div>
       </div>
       </div>
     </div>
+    <Footer />
     </>
   ):(
     <Loading />
