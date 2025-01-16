@@ -12,6 +12,8 @@ const AppContextProvider = (props) => {
     const [isSearched, setIsSearched] = useState(false);
 
     const [jobs,setJobs] = useState([]);
+
+    const[showRecruiterLogin, setShowRecruiterLogin] = useState(false);
     
     //Function to fetch Job Data
     const fetchJobs = async () =>{
@@ -25,7 +27,8 @@ const AppContextProvider = (props) => {
   const value = {
     searchFilter, setSearchFilter,
     isSearched, setIsSearched,
-    jobs, setJobs
+    jobs, setJobs,
+    showRecruiterLogin, setShowRecruiterLogin
   };  // You can put context values here
   return (
     <AppContext.Provider value={value}>
