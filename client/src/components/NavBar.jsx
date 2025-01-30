@@ -19,7 +19,7 @@ const NavBar = () => {
         {
             user 
             ?<div className='flex items-center gap-3'>
-                <Link to = '/appications'>Applied jobs</Link>
+                <Link to = '/applications'>Applied jobs</Link>
                 <p>|</p>
                 <p className='max-sm:hidden'>Hi, {user.firstName + " "+user.lastName}</p>
             </div>
