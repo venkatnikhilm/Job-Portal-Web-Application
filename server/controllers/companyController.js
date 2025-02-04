@@ -133,7 +133,15 @@ export const loginCompany = async (req, res) => {
 export const getCompanyData = async (req, res) => {}
 
 //Post a new job
-export const postJob = async (req, res) => {}
+export const postJob = async (req, res) => {
+    const {title, description, location, salary} = req.body;
+
+    const companyId = req.company._id;
+
+    res.json({ success: true, message: "Job posted successfully" });
+
+    console.log(companyId, {title, description, location, salary});
+}
 
 //Get company job applicants
 export const getCompanyJobApplicants = async (req, res) => {}
