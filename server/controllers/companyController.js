@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import {v2 as cloudinary} from 'cloudinary';
 import generateToken from "../utils/generateToken.js";
 import Job from "../models/Job.js";
+import JobApplication from "../models/JobApplicants.js";
 
 // export const registerCompany = async (req, res) => {
 //     const { name, email, password } = req.body;
@@ -110,7 +111,7 @@ export const loginCompany = async (req, res) => {
 
     try {
         const company = await Company.findOne({ email });
-        if (bcrypt.compare(password, company.password)) {
+        if (await bcrypt.compare(password, company.password)) {
             res.json({
                 success: true,
                 company:{
@@ -181,9 +182,30 @@ export const getCompanyPostedJobs = async (req, res) => {
     try {
         const companyId = req.company._id;
         const jobs = await Job.find({ companyId });
-        res.json({ success: true, jobsData: jobs });
 
-        //(ToDo) Addinig number of appliocants
+        const jobsData = await Promise.all(jobs.map(async (job) => {
+            const applicants = await JobApplication.find({ jobId: job._id });
+                return {...job.toObject(),applicants: applicants.length};
+            }));
+            res.json({ success: true, jobsData});
+        // 
+        // const jobsData = await Promise.all(
+        //     jobs.map(async (job) => {
+        //         console.log(`🔍 Checking applicants for job ID: ${job._id}`);
+        
+        //         // Ensure the correct field is used in the query
+        //         const applicants = await JobApplication.find({ jobId: job._id }) || [];
+        //         console.log(`✅ Found ${applicants.length} applicants for job ID: ${job._id}`);
+        
+        //         return Object.assign(
+        //             job.toObject(), 
+        //             { applicants: applicants.length || 0 } // ✅ Always include applicants
+        //         );
+        //     })
+        // );
+        
+        // console.log("✅ Final jobs data (with applicants count):", JSON.stringify(jobsData, null, 2));
+        // res.json({ success: true, jobsData });
     } catch (error) {
         res.json({ success: false, message: error.message });
         
