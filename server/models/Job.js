@@ -8,7 +8,7 @@ const jobSchema = new mongoose.Schema({
     level: { type: String, required: true },
     salary: { type: Number, required: true },
     date: { type: Number, default: Date.now },
-    visinle: { type: Boolean, default: true },
+    visible: { type: Boolean, default: true },
     companyId: {type: mongoose.Schema.Types.ObjectId, ref: "Company", required: true},
 })
 
